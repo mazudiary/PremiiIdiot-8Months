@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramadan Dua Wall | For Premii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ramadan.css" />
+</head>
+<body class="ramadan-body">
+  <div class="stars-bg" id="starsBg"></div>
+
+  <nav class="home-nav">
+    <a href="home.html" class="brand">Premii 💖</a>
+    <div class="links">
+      <a href="home.html">Home</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="forever.html">Forever</a>
+    </div>
+  </nav>
+
+  <main class="ramadan-main">
+    <section class="hero reveal-scale">
+        <h1>Ya ALLAH, Hear Our Hearts</h1>
+        <p>
+            My dear Premii, in this blessed month of Ramadan and our 8th month together, 
+            I humbly ask you to raise your hands and pray for us.  
+            Especially during Seheri, just before Iftar, when Allah accepts all prayers,
+            and in the quiet of Tahajjud, may you ask Allah to protect our love, our bond, our future, and our happiness.  
+            Please also pray for His forgiveness, guidance, and help in every step of our lives.  
+            Your prayers, In Sha Allah, will be a lasting blessing upon our hearts forever. 🤲💖
+        </p>
+
+        <div class="dua-actions">
+            <button id="loveBtn" class="btn solid" data-category="love">Pray for Our Love</button>
+            <button id="marriageBtn" class="btn ghost" data-category="marriage">Pray for Our Marriage</button>
+            <button id="songsharBtn" class="btn ghost" data-category="songshar">Pray for Our Home & Family</button>
+            <button id="childBtn" class="btn ghost" data-category="child">Pray for Our Love Symbol</button>
+            <button id="jannahBtn" class="btn ghost" data-category="jannah">Pray for Jannatul Ferdous</button>
+        </div>
+
+        <p id="duaText" class="dua-text">
+            Tap a prayer and, Premii, make it from your heart.  
+            Every prayer you make during this blessed month, before Iftar, at Seheri, or in Tahajjud 
+            will, In Sha Allah, bless us, strengthen our love, and guide our future.
+        </p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="dua-wall reveal">
+      <h2>My Prayers for Us</h2>
+      <div id="duaCards" class="cards"></div>
+      <div class="add-dua">
+        <input id="customDua" type="text" placeholder="Write your own dua for us..." maxlength="180" />
+        <button id="addDuaBtn" class="btn solid">Add to Prayer Wall</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="crescent-footer">
+    <p>"Ya ALLAH, let our love begin in this Dunya and never end, not even in Jannatul Ferdous. Accept Premii’s heartfelt prayers for us in this blessed month."</p>
+  </footer>
+
+  <script src="js/ramadan.js"></script>
+</body>
+</html>

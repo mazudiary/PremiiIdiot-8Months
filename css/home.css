@@ -1,0 +1,301 @@
+/* ===== HOME PAGE — Hero & Romantic Landing ===== */
+.home-body {
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(164, 122, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 94, 162, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255, 212, 117, 0.06) 0%, transparent 40%),
+    linear-gradient(180deg, #0d0e24 0%, #0a0b1e 100%);
+}
+
+/* ── Nav ── */
+.home-hero {
+  position: relative;
+  min-height: 92vh;
+  padding: 1.2rem min(4vw, 2.4rem) 4rem;
+}
+
+/* ── Nav (now uses shared .home-nav from base.css) ── */
+
+/* ── Hero Content ── */
+.hero-content {
+  width: min(860px, 94vw);
+  margin: 9vh auto 0;
+  text-align: center;
+  animation: fade-in-up 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-content .mini {
+  letter-spacing: 0.14em;
+  color: var(--accent-blush);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.85rem;
+  animation: text-glow 3s ease-in-out infinite;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  margin: 0.8rem 0;
+  min-height: 5rem;
+  background: linear-gradient(135deg, #fff, var(--accent-blush), var(--accent-lavender));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+.hero-content h1 .cursor-blink {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--accent-blush);
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.hero-content .lead {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.78;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hero-content .lead strong {
+  color: var(--accent-blush);
+}
+
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ── Floating Emojis ── */
+.floating-emoji {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.emoji-particle {
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: 0;
+  animation: floatUp 7s ease-out forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 142, 198, 0.4));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(30px) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-88vh) scale(1.2) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* ── Orb Decorations ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 94, 162, 0.12);
+  top: -10%;
+  right: -5%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(164, 122, 255, 0.1);
+  bottom: 10%;
+  left: -8%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* ── Timeline Section ── */
+.intro-card {
+  margin-top: -1rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.intro-card h2 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, var(--accent-blush), var(--accent-lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.timeline-grid article {
+  border: 1px solid rgba(255, 142, 198, 0.15);
+  border-radius: 16px;
+  padding: 1.3rem;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-grid article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-rose), var(--accent-violet), var(--accent-gold));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.timeline-grid article:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 142, 198, 0.35);
+  box-shadow: 0 12px 40px rgba(255, 94, 162, 0.15), 0 0 20px rgba(164, 122, 255, 0.1);
+}
+
+.timeline-grid article:hover::before {
+  opacity: 1;
+}
+
+.tag {
+  margin: 0;
+  color: var(--accent-blush);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timeline-grid h3 {
+  margin: 0.4rem 0 0.3rem;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #fff, var(--accent-lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.timeline-grid article p:last-child {
+  color: var(--muted);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ── Nicknames Section ── */
+.nicknames-wrap {
+  margin: 3rem auto 3.5rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nicknames-wrap h2 {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-blush));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nickname-display {
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  min-height: 3.5rem;
+  background: linear-gradient(135deg, #ffe1f3, var(--accent-lavender), var(--accent-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  transition: opacity 0.35s ease;
+}
+
+.nickname-display.switching {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+}
+
+.small {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* ── Footer ── */
+.home-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.3rem min(4vw, 2.4rem) 1.8rem;
+  border-top: 1px solid rgba(255, 142, 198, 0.15);
+  background: linear-gradient(180deg, rgba(8, 8, 20, 0.3), rgba(8, 8, 20, 0.7));
+  backdrop-filter: blur(8px);
+}
+
+.home-footer p {
+  margin: 0;
+}
+
+.home-footer a {
+  color: var(--accent-blush);
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.home-footer a:hover {
+  text-shadow: 0 0 12px var(--glow-rose);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* nav responsive handled by base.css */
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,310 @@
+/* ===== LOCK PAGE — Password Gate ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #0a0b1e;
+  --accent-rose: #ff5ea2;
+  --accent-blush: #ff8ec6;
+  --accent-violet: #a47aff;
+  --accent-lavender: #c4a0ff;
+  --accent-gold: #ffd475;
+  --glow-rose: rgba(255, 94, 162, 0.35);
+  --glow-violet: rgba(164, 122, 255, 0.3);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 94, 162, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(164, 122, 255, 0.1) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 212, 117, 0.05) 0%, transparent 40%),
+    linear-gradient(160deg, #0e0520, #091530 40%, #1a0830);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #f4f0ff;
+}
+
+/* ── Stars ── */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.1; }
+  100% { opacity: var(--max-opacity, 0.6); }
+}
+
+/* ── Floating Hearts ── */
+.float-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fh {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: heartDrift 9s ease-out forwards;
+}
+
+@keyframes heartDrift {
+  0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.5; }
+  100% { transform: translateY(-110vh) scale(1) rotate(25deg); opacity: 0; }
+}
+
+/* ── Lock Wrapper ── */
+.lock-wrapper {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 440px;
+  width: 92vw;
+  animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Glass Card ── */
+.lock-card {
+  border: 1px solid rgba(255, 142, 198, 0.2);
+  border-radius: 28px;
+  padding: 2.8rem 2rem 2.4rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(16, 15, 38, 0.65));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--glow-rose);
+  position: relative;
+  overflow: hidden;
+  animation: pulseGlow 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--glow-rose); }
+  50% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 60px var(--glow-violet), 0 0 80px var(--glow-rose); }
+}
+
+.lock-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 142, 198, 0.04), transparent, rgba(164, 122, 255, 0.04), transparent);
+  animation: rotateSlow 18s linear infinite;
+}
+
+@keyframes rotateSlow {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Lock Icon ── */
+.lock-icon {
+  font-size: 3.2rem;
+  margin-bottom: 0.6rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 12px var(--glow-rose));
+  animation: heartPulse 2s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* ── Title ── */
+.lock-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #ffd9f0, var(--accent-lavender), var(--accent-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+  margin-bottom: 0.4rem;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+.lock-subtitle {
+  font-size: 0.92rem;
+  color: #b8b5d8;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.8rem;
+  line-height: 1.5;
+}
+
+/* ── Password Input ── */
+.password-field {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.2rem;
+}
+
+.password-field input {
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 142, 198, 0.25);
+  background: rgba(10, 11, 30, 0.8);
+  color: #f4f0ff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  outline: none;
+}
+
+.password-field input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.password-field input:focus {
+  border-color: var(--accent-blush);
+  box-shadow: 0 0 20px var(--glow-rose), 0 0 40px rgba(164, 122, 255, 0.12);
+}
+
+/* ── Unlock Button ── */
+.unlock-btn {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent-rose), var(--accent-violet));
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 94, 162, 0.35);
+  overflow: hidden;
+}
+
+.unlock-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.unlock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 35px rgba(255, 94, 162, 0.45), 0 0 25px var(--glow-violet);
+}
+
+.unlock-btn:hover::after {
+  left: 100%;
+}
+
+.unlock-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Error Message ── */
+.error-msg {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: #ff6b8a;
+  min-height: 1.4em;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.error-msg.visible {
+  opacity: 1;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+/* ── Hint ── */
+.hint {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.4rem;
+  font-size: 0.8rem;
+  color: rgba(184, 181, 216, 0.5);
+}
+
+.hint strong {
+  color: rgba(255, 142, 198, 0.6);
+}
+
+/* ── Success State ── */
+.lock-card.success {
+  animation: unlockPulse 0.6s ease-out;
+  border-color: rgba(164, 122, 255, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 80px var(--glow-violet), 0 0 120px var(--glow-rose);
+}
+
+@keyframes unlockPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* ── Sparkle Cursor ── */
+.sparkle {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  animation: sparkleFade 0.6s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0) translateY(-15px); }
+}

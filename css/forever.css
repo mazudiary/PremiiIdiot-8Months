@@ -1,0 +1,361 @@
+/* ===== FOREVER PAGE — Promise & Eternity ===== */
+.forever-body {
+  background:
+    radial-gradient(ellipse at 40% 10%, rgba(255, 94, 162, 0.1) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 70%, rgba(164, 122, 255, 0.12) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 80%, rgba(255, 212, 117, 0.06) 0%, transparent 35%),
+    linear-gradient(160deg, #130520, #091530 36%, #1f0839);
+}
+
+/* ── Nav (now uses shared .home-nav from base.css) ── */
+
+/* ── Main ── */
+.forever-main {
+  padding: 2.5rem 0 4rem;
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: 1.25fr 1fr;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Promise Card ── */
+.promise-card {
+  border: 1px solid rgba(255, 142, 198, 0.18);
+  border-radius: 24px;
+  padding: 2rem 1.6rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(16, 15, 38, 0.6));
+  backdrop-filter: blur(12px);
+  animation: fade-in-up 1s ease-out, pulse-glow 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.promise-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 142, 198, 0.04), transparent, rgba(164, 122, 255, 0.04), transparent);
+  animation: rotate-slow 15s linear infinite;
+}
+
+.promise-card h1 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  background: linear-gradient(135deg, var(--accent-blush), var(--accent-lavender), var(--accent-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+  margin-top: 0;
+}
+
+.quote {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  line-height: 1.45;
+  color: #ffdff8;
+  position: relative;
+  z-index: 1;
+  padding-left: 1rem;
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, var(--accent-rose), var(--accent-violet)) 1;
+  animation: text-glow 4s ease-in-out infinite;
+}
+
+.promise-card .btn {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Heart Reveal Container ── */
+.heart-reveal {
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.6s ease,
+              margin 0.6s ease;
+  margin-top: 0;
+}
+
+.heart-reveal.active {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 1.4rem;
+}
+
+.heart-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 142, 198, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 30px var(--glow-rose);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease;
+  animation: fade-in-up 0.8s ease-out;
+  display: block;
+}
+
+.heart-img:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.35),
+    0 0 50px var(--glow-rose),
+    0 0 80px var(--glow-violet);
+}
+
+.heart-msg {
+  margin-top: 1rem;
+  color: var(--accent-blush);
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+  min-height: 1.5em;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.heart-msg.revealing {
+  animation: heartbeat 1s ease-in-out, fade-in 0.6s ease-out;
+}
+
+/* ── Partner Card ── */
+.partner-card {
+  border: 1px solid rgba(164, 122, 255, 0.18);
+  border-radius: 24px;
+  padding: 1.6rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(16, 15, 38, 0.6));
+  backdrop-filter: blur(12px);
+  animation: fade-in-up 1.2s ease-out;
+}
+
+.partner-card h2 {
+  margin-top: 0;
+  background: linear-gradient(135deg, var(--accent-lavender), var(--accent-blush));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.partner-card ul {
+  padding-left: 0;
+  list-style: none;
+  color: var(--muted);
+}
+
+.partner-card li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: padding-left 0.3s ease;
+}
+
+.partner-card li:hover {
+  padding-left: 0.5rem;
+}
+
+.partner-card li strong {
+  color: var(--accent-blush);
+}
+
+.partner-card li:last-child {
+  border-bottom: none;
+}
+
+/* ── Age Box ── */
+.age-box {
+  margin-top: 1.2rem;
+  border: 1px solid rgba(255, 142, 198, 0.2);
+  border-radius: 18px;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  animation: glow-border 4s ease-in-out infinite;
+}
+
+.age-box p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.age-box h3 {
+  margin: 0.5rem 0 0;
+  font-size: 2.4rem;
+  background: linear-gradient(135deg, var(--accent-blush), var(--accent-lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Floating Hearts Container ── */
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart-float {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: heart-rise 8s ease-out forwards;
+}
+
+@keyframes heart-rise {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.1) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* ── Future Section ── */
+.future-section {
+  width: min(1100px, 94vw);
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.future-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-blush), var(--accent-lavender));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+  margin-bottom: 0.3rem;
+}
+
+.future-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.future-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.future-card {
+  border: 1px solid rgba(255, 142, 198, 0.12);
+  border-radius: 20px;
+  padding: 1.6rem 1.3rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(16, 15, 38, 0.65));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
+.future-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-rose), var(--accent-violet), var(--accent-gold));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.future-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 142, 198, 0.3);
+  box-shadow: 0 12px 40px rgba(255, 94, 162, 0.12), 0 0 25px rgba(164, 122, 255, 0.08);
+}
+
+.future-card:hover::before {
+  opacity: 1;
+}
+
+.future-icon {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 0 8px rgba(255, 142, 198, 0.3));
+}
+
+.future-card h3 {
+  font-size: 1.15rem;
+  margin: 0 0 0.6rem;
+  color: var(--accent-blush);
+}
+
+.future-card p {
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Footer ── */
+.forever-footer {
+  text-align: center;
+  padding: 1.4rem 1rem;
+  background: linear-gradient(180deg, rgba(10, 13, 33, 0.4), rgba(10, 13, 33, 0.95));
+  border-top: 1px solid rgba(255, 142, 198, 0.1);
+  position: relative;
+}
+
+.forever-footer::before {
+  content: '∞';
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+  color: var(--accent-lavender);
+  opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+
+.forever-footer p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .forever-main {
+    grid-template-columns: 1fr;
+  }
+
+  .future-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .future-grid {
+    grid-template-columns: 1fr;
+  }
+}
